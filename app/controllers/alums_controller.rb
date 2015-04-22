@@ -1,6 +1,9 @@
 class AlumsController < ApplicationController
 
 
+  def index
+  end
+
   def new
     @alum = Alum.new
     render :new
@@ -9,7 +12,8 @@ class AlumsController < ApplicationController
   def create
     @alum = Alum.new(params.require(:alum).permit(:password, :username, :grad_yr, :fname, :lname, :email))
     if @alum.save
-      redirect_ alums_url
+      login(@alum)
+      redirect_to root_url
     else
       flash[:errors]= @alum.errors.full_messages
       redirect_to new_alum_url

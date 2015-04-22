@@ -3,9 +3,11 @@ class Alum < ActiveRecord::Base
   validates :username, :email, uniqueness: true
   validate :invalid_email
   validate :password_length
-  #validates :too_long
+  validate :too_long
 
   attr_reader :password
+
+
 
   def self.new_sessin_token
     SecureRandom.urlsafe_base64(16)
@@ -34,6 +36,12 @@ class Alum < ActiveRecord::Base
 
   def too_long
     #make sure nothing is over 140 chars
+    self.attributes.keys.each do |key|
+      next if key = "password_digest"
+      if self.send(key).to_s.length >35
+        self.errors.messages[key.to_sym] = ["keyboard banging?"]
+      end
+    end
   end
 
 

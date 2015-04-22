@@ -1,0 +1,11 @@
+
+
+<% if flash[:errors]  %>
+  Sorry,<br>
+<% end %>
+
+<% flash[:errors].to_a.each do |error| %>
+<%= error %>
+  <br>
+<%end%>
+<br>

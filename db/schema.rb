@@ -16,13 +16,16 @@ ActiveRecord::Schema.define(version: 20150422181207) do
   create_table "alums", force: :cascade do |t|
     t.string   "username",        null: false
     t.string   "email",           null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "grad_yr",         null: false
+    t.string   "fname"
+    t.string   "lname"
+    t.integer  "grad_yr"
     t.string   "session_token",   null: false
     t.string   "password_digest", null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "alums", ["email"], name: "index_alums_on_email", unique: true
+  add_index "alums", ["username"], name: "index_alums_on_username", unique: true
 
 end

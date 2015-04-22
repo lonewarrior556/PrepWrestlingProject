@@ -1,0 +1,41 @@
+<h1>Register!</h1>
+
+<%= render "errors" %>
+
+<form action="<%=alums_url%>" method="post">
+
+
+  <label for="username">Username
+  <input type="text" name="alum[username]" value="<%=@alum.username%>">
+  </label>
+  <label for="email"> &nbsp       Email
+  <input type="text" name="alum[email]" value="<%=@alum.email%>">
+  </label>
+  <br>
+  <br>
+  <label for="password"> Password  &nbsp
+  <input type="password" name="alum[password]" value="">
+  </label>
+  <br>
+  <button>Submit</button>
+  <br><br>
+  <h2>Add more!</h2>
+
+  <label for="fname">First Name
+  <input type="text" name="alum[fname]">
+  </label>
+  <br><br>
+  <label for="lname">Last Name
+  <input type="text" name="alum[lname]">
+  </label>
+  <br><br>
+  <label for="grad_yr">Graduation Year
+  <select name="alum[grad_yr]">
+      <% Time.now.year.downto(1970).each do |year| %>
+      <option value=<%=year%>><%=year%></option>
+      <% end %>
+  </select>
+  </label>
+  <br>
+  <button>Submit</button>
+</form>
